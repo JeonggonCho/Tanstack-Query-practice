@@ -4,6 +4,8 @@ import { PropsWithChildren, ReactElement } from "react";
 import { MemoryRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+import { queryClientOptions } from "@/react-query/queryClient";
+
 // ** FOR TESTING CUSTOM HOOKS ** //
 // from https://tkdodo.eu/blog/testing-react-query#for-custom-hooks
 // export const createQueryClientWrapper = () => {
@@ -15,7 +17,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // 각 테스트마다 개별 query client를 생성하는 함수 만들기
 const generateQueryClient = () => {
-    return new QueryClient();
+    queryClientOptions.defaultOptions.queries.retry = false;
+    return new QueryClient(queryClientOptions);
 };
 
 // reference: https://testing-library.com/docs/react-testing-library/setup#custom-render
