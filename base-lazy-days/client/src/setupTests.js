@@ -15,12 +15,17 @@ import { server } from "./mocks/server.js";
 expect.extend(matchers);
 
 // mock useLoginData to mimic a logged-in user
+// 로그인한 유저를 모사하기 위한 useLoginData 목업
+// vi.mock은 jest.mock과 매우 유사함
+// 현재 기본적으로 auth 컨텍스트에 대해서 useLoginData 반환 시,
+// 항상 사용자 id가 1인 객체를 반환하는 함수를 제공하라고 설정
+// 그 후 기본 값 제공 -> 기본 값은 제공자로서 기본적으로 제공자에게 전달된 자식들을 반환함
 vi.mock("./auth/AuthContext", () => ({
-  __esModule: true,
-  // for the hook return value
-  useLoginData: () => ({ userId: 1 }),
-  // for the provider default export
-  default: ({ children }) => children,
+    __esModule: true,
+    // for the hook return value
+    useLoginData: () => ({ userId: 1 }),
+    // for the provider default export
+    default: ({ children }) => children,
 }));
 
 // msw setup and teardown below

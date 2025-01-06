@@ -8,12 +8,10 @@ import { queryClientOptions } from "@/react-query/queryClient";
 
 // ** FOR TESTING CUSTOM HOOKS ** //
 // from https://tkdodo.eu/blog/testing-react-query#for-custom-hooks
-// export const createQueryClientWrapper = () => {
-//   const queryClient = generateQueryClient();
-//   return ({ children }: PropsWithChildren) => (
-//     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-//   );
-// };
+export const createQueryClientWrapper = () => {
+    const queryClient = generateQueryClient();
+    return ({ children }: PropsWithChildren) => <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
+};
 
 // 각 테스트마다 개별 query client를 생성하는 함수 만들기
 const generateQueryClient = () => {
