@@ -1,4 +1,6 @@
 // act -> 훅의 함수를 실행함
+// render -> 컴포넌트를 렌더링
+// renderHook -> 커스텀 훅 렌더링
 // waitFor -> 결과를 기다림
 import { act, renderHook, waitFor } from "@testing-library/react";
 
